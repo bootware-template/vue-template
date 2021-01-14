@@ -1,22 +1,29 @@
 import Vue from 'vue'
-import VueRouter, { RouteConfig } from 'vue-router'
-import Home from '../components/pages/Home.vue'
+import VueRouter, { RouteConfig } from 'vue-router';
+import Home from '@/components/pages/Home.vue';
+import About from '@/components/pages/About.vue';
+import SideMenuPage from '@/components/pages/SideMenuPage.vue';
+
 
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../components/pages/About.vue')
+    name: 'SideMenuPage',
+    component: SideMenuPage,
+    children: [
+      {
+        path: 'home',
+        name: 'Home',
+        component: Home
+      },
+      {
+        path: 'about',
+        name: 'About',
+        component: About
+      }
+    ]
   }
 ]
 

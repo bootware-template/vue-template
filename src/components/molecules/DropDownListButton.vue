@@ -34,7 +34,7 @@ import DefaultVue from 'vue';
 @Component
 export default class DropDownListButton extends Vue {
   name = "DropDownListButton";
-  @Prop({default: []}) routes: any[];
+  @Prop({default: []}) routes!: any[];
 }
 
 DefaultVue.component(DropDownListButton.name, DropDownListButton);

@@ -1,4 +1,6 @@
-# vue-template
+# Vue Template
+
+![Design](docs/top.png "Design")
 
 ## Project setup
 ```

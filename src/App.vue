@@ -1,14 +1,14 @@
 <template>
   <v-app>
+
     <v-app-bar
-      app
-      elevation="0"
-      class="transparent"
+        app
+        elevation="0"
+        class="transparent"
     >
-
-      <div class="text-h3">Template</div>
+      <div class="text-h4">Template</div>
       <v-spacer></v-spacer>
-
+      <slot name="right"/>
     </v-app-bar>
 
     <v-main>
@@ -24,6 +24,7 @@
         </v-row>
       </v-container>
     </v-footer>
+
   </v-app>
 </template>
 

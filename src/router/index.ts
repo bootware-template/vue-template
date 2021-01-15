@@ -4,7 +4,6 @@ import Home from '@/components/pages/Home.vue';
 import About from '@/components/pages/About.vue';
 import SideMenuPage from '@/components/pages/SideMenuPage.vue';
 
-
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
@@ -14,7 +13,7 @@ const routes: Array<RouteConfig> = [
     component: SideMenuPage,
     children: [
       {
-        path: 'home',
+        path: '/',
         name: 'Home',
         component: Home
       },

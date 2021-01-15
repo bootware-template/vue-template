@@ -3,6 +3,7 @@
 
     <!-- Responsive: Display md-and-up-->
     <div class="hidden-md-and-up mx-5">
+
       <drop-down-list-button :routes="routes">
         <template v-slot:under>
           <v-divider></v-divider>
@@ -13,33 +14,25 @@
       <v-fade-transition hide-on-leave>
         <router-view/>
       </v-fade-transition>
+
     </div>
 
-    <v-container>
-      <v-row class="hidden-sm-and-down" justify="center">
+    <!-- Responsive: Display md-and-up-->
+    <div class="hidden-sm-and-down">
 
-        <!-- Responsive: Display md-and-up-->
+      <v-row justify="center">
+
         <v-col class="col-md-3">
-          <div class="pa-md-3">
-            <v-card rounded elevation="0">
+          <menu-list :routes="routes">
+            <template v-slot:top>
               <v-card-title>{{ menuTitle }}</v-card-title>
               <v-divider></v-divider>
-              <v-list>
-                <v-list-item
-                    v-for="route in routes"
-                    class="mb-3"
-                    color="secondary"
-                    link
-                    :to="route.path"
-                    :key="route.name"
-                >
-                  {{ route.name }}
-                </v-list-item>
-                <v-divider></v-divider>
-                <v-list-item class="mt-3" @click="clickOther">Other</v-list-item>
-              </v-list>
-            </v-card>
-          </div>
+            </template>
+            <template v-slot:under>
+              <v-divider></v-divider>
+              <v-list-item class="mt-3" @click="clickOther">Other</v-list-item>
+            </template>
+          </menu-list>
         </v-col>
 
         <v-col class="col-md-9">
@@ -49,8 +42,10 @@
             </div>
           </v-fade-transition>
         </v-col>
+
       </v-row>
-    </v-container>
+
+    </div>
 
   </div>
 </template>
@@ -58,9 +53,11 @@
 <script lang="ts">
 import {Component, Vue} from "vue-property-decorator";
 import DropDownListButton from "@/components/molecules/DropDownListButton.vue";
+import MenuList from "@/components/molecules/MenuList.vue";
 
 @Component({
   components: {
+    MenuList,
     DropDownListButton
   }
 })
@@ -70,8 +67,8 @@ export default class SideMenuPage extends Vue {
   routes: any[] = [];
 
   created() {
-    this.$router.options.routes
-        .filter((route: any) => route.name == this.name)
+
+    this.$router.options.routes?.filter((route: any) => route.name == this.name)
         .flatMap((route: any) => route.children)
         .forEach((route: any) => {
           this.routes.push({
